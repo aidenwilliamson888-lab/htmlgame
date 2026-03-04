@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Waves Unblocked - Play Online Free | Game Access</title>
-    <meta name="description" content="Play Space Waves unblocked directly in your browser. Fast arcade action, neon tunnels, and instant retries. Access the full game on our main site.">
+    <title>Space Waves Unblocked - Play Online Free | Main Site</title>
+    <meta name="description" content="Play Space Waves unblocked. Fast arcade action, neon tunnels. Click to play the full game on our main site. Free, no download.">
     <style>
         * {
             margin: 0;
@@ -17,7 +17,6 @@
             background: linear-gradient(145deg, #0a0f1e 0%, #141b2b 100%);
             color: #e2e8f0;
             line-height: 1.6;
-            min-height: 100vh;
         }
 
         .container {
@@ -26,11 +25,10 @@
             padding: 0 20px;
         }
 
-        /* Header sederhana */
+        /* Header */
         .header {
             padding: 30px 0 20px;
             text-align: center;
-            border-bottom: 1px solid #1e2a3a;
         }
 
         .header h1 {
@@ -39,18 +37,15 @@
             background: linear-gradient(135deg, #fff, #94a3b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
             margin-bottom: 10px;
         }
 
         .header p {
             color: #94a3b8;
             font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
         }
 
-        /* Game Preview Section - Image Only */
+        /* Game Preview Section */
         .preview-section {
             margin: 40px 0 30px;
         }
@@ -59,79 +54,101 @@
             background: #0f172a;
             border-radius: 32px;
             padding: 25px;
-            border: 1px solid #1e2f40;
-            box-shadow: 0 25px 40px -15px rgba(0, 0, 0, 0.6);
+            border: 1px solid #2d3a5e;
+            box-shadow: 0 25px 40px -15px #000;
             text-align: center;
         }
 
-        .game-image {
+        /* Container gambar dengan overlay play */
+        .image-container {
+            position: relative;
             width: 100%;
             border-radius: 24px;
             overflow: hidden;
             border: 3px solid #2d3a5e;
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
-            margin-bottom: 30px;
-            background: #1a2538;
             aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            cursor: pointer;
+            margin-bottom: 20px;
         }
 
-        .game-image img {
+        .image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.5s ease;
         }
 
-        /* Placeholder jika gambar belum ada - ini nanti diganti dengan gambar game asli */
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #1e2a3a, #0f172a);
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Overlay gelap */
+        .image-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease;
+            z-index: 1;
+        }
+
+        .image-container:hover::before {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Logo Play */
+        .play-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: rgba(59, 130, 246, 0.9);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+            border: 4px solid white;
+            transition: all 0.3s ease;
         }
 
-        .image-placeholder::before {
-            content: "🎮 SPACE WAVES";
-            font-size: 2rem;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.2);
-            letter-spacing: 4px;
-            transform: rotate(-15deg);
+        .image-container:hover .play-logo {
+            transform: translate(-50%, -50%) scale(1.1);
+            background: #3b82f6;
+            box-shadow: 0 0 40px #3b82f6;
         }
 
-        .image-placeholder::after {
-            content: "";
+        .play-logo svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+            margin-left: 5px; /* biar segitiganya center */
+        }
+
+        /* Teks klik */
+        .click-text {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                transparent 30%,
-                rgba(59, 130, 246, 0.1) 50%,
-                transparent 70%
-            );
-            animation: shine 8s infinite;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 5px black;
+            z-index: 2;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            padding: 20px 0 10px;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(30deg); }
-        }
-
-        /* CTA Utama - BESAR */
-        .cta-main {
-            margin: 30px 0 20px;
-        }
-
+        /* CTA Button */
         .cta-button {
             display: inline-block;
             background: linear-gradient(135deg, #3b82f6, #8b5cf6);
@@ -141,17 +158,15 @@
             padding: 20px 60px;
             border-radius: 60px;
             text-decoration: none;
-            letter-spacing: 1px;
             box-shadow: 0 15px 25px -8px rgba(59, 130, 246, 0.5);
             transition: all 0.3s ease;
             border: 2px solid rgba(255, 255, 255, 0.2);
-            margin: 15px 0;
+            margin: 20px 0;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 25px 35px -8px rgba(59, 130, 246, 0.7);
-            background: linear-gradient(135deg, #2563eb, #7c3aed);
         }
 
         .cta-button.small {
@@ -159,20 +174,8 @@
             padding: 15px 40px;
         }
 
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid #3b82f6;
-            box-shadow: none;
-        }
-
-        .cta-button.secondary:hover {
-            background: rgba(59, 130, 246, 0.1);
-            transform: translateY(-3px);
-        }
-
         .note {
             color: #6b7a99;
-            font-size: 1rem;
             margin: 15px 0;
         }
 
@@ -193,9 +196,8 @@
 
         .info-card h3 {
             color: #94a3b8;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 15px;
         }
 
@@ -220,20 +222,9 @@
         .info-card li::before {
             content: "⚡";
             color: #3b82f6;
-            font-size: 1.2rem;
         }
 
-        .badge {
-            background: #1e2a3a;
-            padding: 4px 12px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            color: #94a3b8;
-            display: inline-block;
-            margin-top: 15px;
-        }
-
-        /* FAQ Section */
+        /* FAQ */
         .faq-section {
             background: #0f172a;
             border-radius: 30px;
@@ -245,17 +236,12 @@
         .faq-section h2 {
             font-size: 2.2rem;
             margin-bottom: 30px;
-            color: white;
         }
 
         .faq-item {
             margin-bottom: 25px;
             border-bottom: 1px solid #25344a;
             padding-bottom: 20px;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
         }
 
         .faq-question {
@@ -278,10 +264,6 @@
             color: #5f6e8c;
         }
 
-        .footer-links {
-            margin: 20px 0;
-        }
-
         .footer-links a {
             color: #94a3b8;
             text-decoration: none;
@@ -292,7 +274,6 @@
             color: #3b82f6;
         }
 
-        /* Mobile */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -308,13 +289,14 @@
                 width: 100%;
             }
             
-            .faq-section {
-                padding: 25px;
+            .play-logo {
+                width: 70px;
+                height: 70px;
             }
             
-            .cta-button.small {
-                font-size: 1.1rem;
-                padding: 12px 25px;
+            .play-logo svg {
+                width: 35px;
+                height: 35px;
             }
         }
     </style>
@@ -323,137 +305,131 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>🎮 SPACE WAVES UNBLOCKED</h1>
+            <h1>🚀 SPACE WAVES UNBLOCKED</h1>
             <p>Free browser version • Neon arcade action • Play anywhere</p>
         </div>
 
-        <!-- Game Preview Section - GAMBAR + BUTTON -->
+        <!-- Game Preview dengan Gambar & Logo Play -->
         <div class="preview-section">
             <div class="game-card">
-                <!-- GAMBAR GAME - Ganti src dengan gambar game lo -->
-                <div class="game-image">
-                    <!-- 
-                        TODO: Ganti dengan gambar game asli lo
-                        Contoh: <img src="space-waves-preview.jpg" alt="Space Waves Gameplay">
-                        Untuk sementara pake placeholder biar keliatan
-                    -->
-                    <div class="image-placeholder"></div>
-                    <!-- Kalau udah punya gambar, uncomment ini dan hapus div.image-placeholder di atas -->
-                    <!-- <img src="link-gambar-game-lo.jpg" alt="Space Waves Game Screenshot"> -->
-                </div>
+                <!-- Gambar + Play Logo (bisa diklik) -->
+                <a href="https://situs-utama-lo.com" target="_blank" rel="noopener" style="text-decoration: none; display: block;">
+                    <div class="image-container">
+                        <!-- GAMBAR GAME ASLI -->
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&auto=format" alt="Space Waves Game Preview - Neon arcade tunnel">
+                        
+                        <!-- Logo Play -->
+                        <div class="play-logo">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="5,3 19,12 5,21" fill="white"/>
+                            </svg>
+                        </div>
+                        
+                        <!-- Teks CTA -->
+                        <div class="click-text">
+                            👆 CLICK TO PLAY ON MAIN SITE
+                        </div>
+                    </div>
+                </a>
 
-                <!-- CTA UTAMA BESAR - ke situs lo -->
-                <div class="cta-main">
-                    <a href="https://situs-utama-lo.com" class="cta-button" target="_blank" rel="noopener">
-                        🚀 PLAY FULL GAME ON MAIN SITE
-                    </a>
-                    <p class="note">⚡ No restrictions • Free to play • Instant access</p>
-                </div>
+                <!-- CTA Text -->
+                <h2 style="color: white; margin: 20px 0 10px; font-size: 2rem;">
+                    Ready to play?
+                </h2>
+                <p style="color: #94a3b8; margin-bottom: 20px;">
+                    Click the image above or the button below to play the full game
+                </p>
 
-                <!-- CTA Secondary (opsional) -->
+                <!-- CTA BUTTON -->
+                <a href="https://situs-utama-lo.com" class="cta-button" target="_blank" rel="noopener">
+                    🎮 PLAY SPACE WAVES NOW
+                </a>
+                <p class="note">✓ No download • ✓ Free • ✓ Unblocked</p>
+
+                <!-- Secondary Buttons -->
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://situs-utama-lo.com/android" class="cta-button small secondary" target="_blank" rel="noopener">📱 Android App</a>
-                    <a href="https://situs-utama-lo.com/ios" class="cta-button small secondary" target="_blank" rel="noopener">🍏 iOS App</a>
+                    <a href="https://situs-utama-lo.com/android" class="cta-button small" style="background: #1e293b; box-shadow: none;" target="_blank" rel="noopener">📱 Android</a>
+                    <a href="https://situs-utama-lo.com/ios" class="cta-button small" style="background: #1e293b; box-shadow: none;" target="_blank" rel="noopener">🍏 iOS</a>
                 </div>
             </div>
         </div>
 
-        <!-- Info Singkat (SEO friendly) -->
+        <!-- Info Grid -->
         <div class="info-grid">
             <div class="info-card">
-                <h3>⏱️ QUICK FACTS</h3>
-                <h2>About the Game</h2>
+                <h3>📌 QUICK FACTS</h3>
+                <h2>About</h2>
                 <ul>
                     <li>Creator: Paul Connor</li>
-                    <li>Genre: Arcade / Avoider</li>
+                    <li>Genre: Arcade / Reflex</li>
                     <li>Platform: Browser, Mobile</li>
                     <li>Price: Free</li>
                 </ul>
-                <span class="badge">✓ Unblocked (HTTPS)</span>
             </div>
 
             <div class="info-card">
-                <h3>🎮 HOW TO PLAY</h3>
-                <h2>Controls</h2>
+                <h3>🎮 CONTROLS</h3>
+                <h2>How to Play</h2>
                 <ul>
                     <li>←/→ or A/D — Steer</li>
-                    <li>Mobile — Swipe to turn</li>
+                    <li>Mobile — Swipe</li>
                     <li>R — Quick retry</li>
                     <li>ESC — Pause</li>
                 </ul>
-                <p style="color: #6b7a99; margin-top: 15px;">Navigate neon tunnels, don't hit walls!</p>
             </div>
 
             <div class="info-card">
                 <h3>💡 TIPS</h3>
                 <h2>Pro Strategy</h2>
                 <ul>
-                    <li>Keep micro-adjustments light</li>
+                    <li>Light touches only</li>
                     <li>Learn the rhythm</li>
-                    <li>Over-steering = #1 crash cause</li>
-                    <li>Short levels, instant retries</li>
+                    <li>Avoid over-steering</li>
+                    <li>Instant retries</li>
                 </ul>
             </div>
         </div>
 
-        <!-- CTA Tengah -->
-        <div style="text-align: center; margin: 30px 0;">
-            <a href="https://situs-utama-lo.com" class="cta-button small" target="_blank" rel="noopener">
-                🔥 PLAY MORE GAMES ON OUR MAIN SITE
-            </a>
-        </div>
-
-        <!-- FAQ Section -->
+        <!-- FAQ -->
         <div class="faq-section">
-            <h2>Frequently Asked Questions</h2>
+            <h2>FAQ</h2>
             
             <div class="faq-item">
-                <div class="faq-question">What is Space Waves Unblocked?</div>
-                <div class="faq-answer">It's the browser version of Space Waves that you can play online for free. This page shows a preview - the full game is available on our main site.</div>
+                <div class="faq-question">Is this the full game?</div>
+                <div class="faq-answer">This is a preview page. Click the image or button above to play the complete game on our main site.</div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-question">Is it actually unblocked?</div>
-                <div class="faq-answer">Yes, the full game on our main site uses HTTPS and has no pop-ups. Perfect for school or work networks.</div>
+                <div class="faq-answer">Yes! The full game on our main site uses HTTPS and works on school/work networks.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Is this the full game?</div>
-                <div class="faq-answer">This page shows a preview. Click the big button above to play the complete game on our main site with all features unlocked.</div>
+                <div class="faq-question">Do I need to download?</div>
+                <div class="faq-answer">No download needed. Plays directly in browser on our main site. Mobile apps also available.</div>
             </div>
 
-            <div class="faq-item">
-                <div class="faq-question">Do I need to download anything?</div>
-                <div class="faq-answer">No download needed! The game runs directly in your browser on our main site. Mobile apps are also available via our main site.</div>
-            </div>
-
-            <!-- CTA di dalam FAQ -->
+            <!-- CTA di FAQ -->
             <div style="text-align: center; margin-top: 40px;">
                 <a href="https://situs-utama-lo.com" class="cta-button small" style="font-size: 1.4rem;" target="_blank" rel="noopener">
-                    🎯 VISIT MAIN SITE NOW
+                    🚀 VISIT MAIN SITE
                 </a>
             </div>
         </div>
 
-        <!-- Footer dengan CTA -->
+        <!-- Footer -->
         <div class="footer">
-            <p><strong>About this site:</strong> Landing page for Space Waves Unblocked. All game access is via our main site.</p>
+            <p><strong>Space Waves Unblocked</strong> — Landing page for game access</p>
             
-            <div class="footer-links">
+            <div class="footer-links" style="margin: 20px 0;">
                 <a href="https://situs-utama-lo.com">Main Site</a>
                 <a href="https://situs-utama-lo.com/privacy">Privacy</a>
                 <a href="https://situs-utama-lo.com/contact">Contact</a>
             </div>
 
-            <!-- CTA Footer -->
-            <div style="margin: 30px 0;">
-                <a href="https://situs-utama-lo.com" class="cta-button small secondary" style="font-size: 1.1rem;" target="_blank" rel="noopener">
-                    🌐 www.situs-utama-lo.com
-                </a>
-            </div>
-
-            <p>© 2025 Space Waves Unblocked. This is a promotional landing page.<br>
-            Game by Paul Connor. All rights to respective owners.</p>
+            <a href="https://situs-utama-lo.com" style="color: #3b82f6; text-decoration: none; display: inline-block; margin: 20px 0;">www.situs-utama-lo.com</a>
+            
+            <p style="margin-top: 20px;">© 2025 Space Waves Unblocked. Game by Paul Connor.<br>This is a promotional landing page.</p>
         </div>
     </div>
 </body>
